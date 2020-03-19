@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title>Strophe.js Echobot Example</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.8/angular.js" integrity="sha256-47AQCzX6dqzjicKe4PabaBJtLnWffl34LU9WJUulNog=" crossorigin="anonymous"></script>
+<!--   <script type='text/javascript'
+	  src='http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js'></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+  <script type='text/javascript' src='./strophe.umd.js'></script>
+  <script src="https://cdn.jsdelivr.net/npm/strophejs-plugin-rsm@0.0.2/lib/strophe.rsm.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/strophejs-plugin-mam@0.0.3/lib/strophe.mam.min.js"></script>
+ <script src='./si-filetransfer.js'></script>
+  <script src='./ibb.js'></script>
+  <script src='./muc.js'></script>
+    <script src='./upload1.js'></script>
+    <script src='./chatState.js'></script>
+  <script type='text/javascript' src='custom.js'></script>
+</head>
+<body ng-app='myApp' ng-controller='myCtrl'>
+  <div id='login' style='text-align: center'>
+    <form name='cred'>
+      <label for='jid'>JID:</label>
+      <input type='text' id='jid' />
+      <label for='pass'>Password:</label>
+      <input type='password' id='pass' />
+      <input type='button' id='connect' value='connect' />
+    </form>
+
+
+
+    <button id='room'>Create Room</button>
+    <button ng-click="uploadFileOne()">Angu upl</button>
+  </div>
+  <div id='file_transf' class="panel panel-default">
+      <div class="panel-heading">File transfer</div>
+      <form name='file_form' class="panel-body">
+        <input type="file" id="file" name="file[]" />
+        <input type='button' id='btnSendFile' value='sendFile' />
+        <output id="list"></output>
+      </form>
+    </div>
+  <hr />
+  <div id='log'></div>
+  <button type="button" id="active">Set active</button>
+  <button type="button" id="composing">Set composing</button>
+  <button type="button" id="paused">Set paused</button>
+  <script type="text/javascript">
+    
+
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope, $http, $window) {
+  $scope.firstName = "John";
+  $scope.lastName = "Doe";
+
+  $scope.uploadFileOne = function() {
+      console.log($window.putUrl)
+      console.log($window.fileDoc)
+
+      $http.put($window.putUrl, $window.fileDoc, { 'Content-Type', 'text/plain' });
+  }
+});
+
+  </script>
+</body>
+</html>
